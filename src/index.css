@@ -1,13 +1,33 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url(https://fonts.googleapis.com/css?family=Hind+Siliguri:300,regular,500,600,700);
+
+* {
+  @apply m-0 p-0 box-border;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  @apply bg-zinc-900 text-zinc-200 font-bn;
+}
+
+[data-state="open"] .chevron {
+  @apply rotate-180;
+}
+[data-state="open"] .content {
+  @apply animate-open;
+}
+[data-state="closed"] .content {
+  @apply animate-close;
+}
+[data-state="open"] .trigger {
+  /* @apply ; */
+}
+
+*::-webkit-scrollbar {
+  @apply bg-zinc-700/50 rounded-t-full w-2 p-1;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-zinc-700 rounded-full;
 }
