@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Course from "./Course";
 import Navbar from "./components/Navbar";
+import Display from "./components/Display";
 
 render(
   <React.StrictMode>
@@ -15,7 +16,9 @@ render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="pricing-tables" element={<PricingTables />} />
-        <Route path="course" element={<Course />} />
+        <Route path="course" element={<Course />}>
+          <Route path=":courseId" element={<Display />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

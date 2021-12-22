@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 export default function () {
   return (
-    <div className="flex-[.35] p-4 pr-2 rounded-md bg-zinc-800">
-      <div className="overflow-y-scroll pr-2 h-[80vh] ">
+    <aside className="flex-[.35] p-4 pr-2 rounded-md bg-zinc-800">
+      <div className="overflow-y-scroll pr-2 max-h-[80vh] ">
         <Accordion.Root
           type="single"
           className="flex flex-col gap-2"
@@ -18,7 +18,7 @@ export default function () {
             ))}
         </Accordion.Root>
       </div>
-    </div>
+    </aside>
   );
 }
 
@@ -36,21 +36,32 @@ const Item = ({ value }) => (
     </Accordion.Header>
     <Accordion.Content className="content transition duration-150 bg-zinc-700">
       <ul className="p-5 pt-0 flex flex-col gap-2">
-        {["পর্ব ২", "পর্ব ৩", "পর্ব ৪"].map((link, index) => (
-          <Episode link={++index + ". " + link} type="video" time="5" />
+        {[
+          { label: "পর্ব ২", id: "g2nMKzhkvxw" },
+          { label: "পর্ব ৩", id: "br4cYeTvb5I" },
+          { label: "পর্ব ৪", id: "e0ctD6p2MyA" },
+          { label: "পর্ব ৫", id: "jDUNolYzLo0" },
+        ].map((link, index) => (
+          <Episode
+            key={index}
+            link={++index + ". " + link.label}
+            type="video"
+            time="5"
+            index={link.id}
+          />
         ))}
       </ul>
     </Accordion.Content>
   </Accordion.Item>
 );
 
-const Episode = ({ link, type, time, amount }) => (
+const Episode = ({ link, type, time, amount, index }) => (
   <Link
-    to="/"
+    to={"" + index}
     className="hover:bg-zinc-600 active:bg-zinc-600 transition duration-300 flex flex-col   text-xl font-medium rounded-lg py-2 px-4"
   >
     {link}
-    <span className="text-zinc-400 text-base font-bold gap-1 uppercase flex items-center">
+    <span className="text-zinc-400 text-base font-semibold gap-1 uppercase flex items-center">
       {type == "video" ? (
         <AiOutlineVideoCamera className="text-2xl" />
       ) : (
@@ -116,7 +127,7 @@ function AiOutlineCheck(props) {
   );
 }
 
-function BsChevronDown(props) {
+export function BsChevronDown(props) {
   return (
     <svg
       stroke="currentColor"
