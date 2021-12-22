@@ -13,7 +13,7 @@ const links = [
 ];
 function App() {
   return (
-    <div className="min-h-[100vh] flex flex-col items-center justify-center">
+    <div className="min-h-[80vh] flex flex-col items-center justify-center">
       <ul>
         {links.map((link) => (
           <Link

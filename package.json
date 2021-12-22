@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@radix-ui/react-accordion": "^0.1.5",
+    "@radix-ui/react-dropdown-menu": "^0.1.4",
     "@radix-ui/react-icons": "^1.0.3",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",

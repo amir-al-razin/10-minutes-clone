@@ -1,27 +1,32 @@
 import { EnterIcon } from "@radix-ui/react-icons";
 import React from "react";
 import { Link } from "react-router-dom";
+import Dropdown from "./Dropdown";
 
 const navLinks = [
   { label: "Study", Icon: BsBook },
   { label: "Skills", Icon: BsBookmark },
-  { label: "HSC", Icon: AiOutlinePlayCircle },
+  { label: "HSC", Icon: AiOutlinePlayCircle, dropdown: true },
   { label: "Books", Icon: BiRocket },
 ];
 const Navbar = () => {
   return (
-    <header className="border-b-2  items-center flex justify-between border-zinc-800 py-3 container mx-auto">
+    <header className="border-b-2  items-center px-1 flex justify-between border-zinc-800 py-3 container mx-auto">
       <img src="/logo.svg" className="w-12  " />
       <nav className="flex items-center justify-center bg-zinc-800 rounded-lg p-1 gap-2 ">
-        {navLinks.map(({ label, Icon }) => (
-          <Link
-            to="/course"
-            className="px-6 py-1 flex items-center gap-2 transition duration-300 font-medium text-lg hover:bg-zinc-700 rounded-lg"
-          >
-            <Icon />
-            {label}
-          </Link>
-        ))}
+        {navLinks.map(({ label, Icon, dropdown }) =>
+          !dropdown ? (
+            <Link
+              to="/course"
+              className="px-6 py-1 flex items-center gap-2 transition duration-300 font-medium text-lg hover:bg-zinc-700 rounded-lg"
+            >
+              <Icon />
+              {label}
+            </Link>
+          ) : (
+            <Dropdown label={label} Icon={Icon} />
+          )
+        )}
       </nav>
       <Link
         to="/course"
