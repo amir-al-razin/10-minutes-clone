@@ -17,6 +17,7 @@ render(
         <Route path="/" element={<App />} />
         <Route path="pricing-tables" element={<PricingTables />} />
         <Route path="course" element={<Course />}>
+
           <Route path=":courseId" element={<Display />} />
         </Route>
       </Routes>

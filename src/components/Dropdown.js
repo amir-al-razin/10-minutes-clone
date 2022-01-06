@@ -1,5 +1,5 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { BsChevronDown } from "./Accordion";
 
 export default function ({ label, Icon, dropdownLinks }) {
@@ -26,11 +26,14 @@ export default function ({ label, Icon, dropdownLinks }) {
 }
 
 const DropdownLink = ({ dropdownLink }) => (
-  <Link to="/course">
+  <NavLink
+    style={({ isActive }) => ({ background: isActive ? "#115e59" : "" })}
+    to="/course"
+  >
     <DropdownMenu.Item className="flex items-center gap-2 px-5 py-1.5  hover:bg-zinc-600 transition duration-300 hover:outline-none rounded-lg">
       <GrDocumentText className="text-zinc-400" /> {dropdownLink}
     </DropdownMenu.Item>
-  </Link>
+  </NavLink>
 );
 
 function GrDocumentText(props) {

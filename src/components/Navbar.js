@@ -1,28 +1,33 @@
 import { EnterIcon } from "@radix-ui/react-icons";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Dropdown from "./Dropdown";
 
 const navLinks = [
-  { label: "Study", Icon: BsBook },
-  { label: "Skills", Icon: BsBookmark },
-  { label: "HSC", Icon: AiOutlinePlayCircle, dropdown: true },
-  { label: "Books", Icon: BiRocket },
+  { label: "Study", Icon: BsBook, slug: "course" },
+  { label: "Skills", Icon: BsBookmark, slug: "skills" },
+  { label: "HSC", Icon: AiOutlinePlayCircle, dropdown: true, slug: "hsc" },
+  { label: "Books", Icon: BiRocket, slug: "books" },
 ];
 const Navbar = () => {
   return (
     <header className="border-b-2  items-center px-1 flex justify-between border-zinc-800 py-3 container mx-auto">
       <img src="/logo.svg" className="w-12  " />
       <nav className="flex items-center justify-center bg-zinc-800 rounded-lg p-1 gap-2 ">
-        {navLinks.map(({ label, Icon, dropdown }) =>
+        {navLinks.map(({ label, Icon, dropdown, slug }) =>
           !dropdown ? (
-            <Link
-              to="/course"
-              className="px-6 py-1 flex items-center gap-2 transition duration-300 font-medium text-lg hover:bg-zinc-700 rounded-lg"
+            <NavLink
+              to={"/" + slug}
+              className={
+                "px-6 py-1 flex items-center gap-2 transition duration-300 font-medium text-lg hover:bg-zinc-700 active:bg-zinc-700 rounded-lg"
+              }
+              style={({ isActive }) => ({
+                background: isActive ? "rgba(17, 94, 89, .3)" : "",
+              })}
             >
               <Icon />
               {label}
-            </Link>
+            </NavLink>
           ) : (
             <Dropdown label={label} Icon={Icon} />
           )
