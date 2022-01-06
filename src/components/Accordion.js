@@ -25,7 +25,7 @@ export default function () {
 const Item = ({ value }) => (
   <Accordion.Item value={value} className="overflow-hidden">
     <Accordion.Header className="">
-      <Accordion.Trigger className="trigger flex text-1.5xl justify-start w-full items-center  font-semibold bg-zinc-700 p-4 w-full rounded-md rounded-b-none">
+      <Accordion.Trigger className="trigger flex text-1.5xl focus-visible:border-b-2  focus-visible:outline-none focus-visible:border-teal-600 justify-start w-full items-center  font-semibold bg-zinc-700 p-4 w-full rounded-md rounded-b-none">
         <AiOutlineCheck className="bg-teal-800/50 text-teal-500  rounded-full  p-1 text-2xl" />
         <span className="mx-3">৫. প্রোগ্রামিং ভাষা</span>
         <BsChevronDown
@@ -37,17 +37,17 @@ const Item = ({ value }) => (
     <Accordion.Content className="content transition duration-150 bg-zinc-700">
       <ul className="p-5 pt-0 flex flex-col gap-2">
         {[
-          { label: "পর্ব ২", id: "g2nMKzhkvxw" },
-          { label: "পর্ব ৩", id: "br4cYeTvb5I" },
-          { label: "পর্ব ৪", id: "e0ctD6p2MyA" },
-          { label: "পর্ব ৫", id: "jDUNolYzLo0" },
+          { label: "পর্ব ২", id: "g2nMKzhkvxw", type: "video" },
+          { label: "পর্ব ৩", id: "br4cYeTvb5I", type: "video" },
+          { label: "পর্ব ৪", id: "e0ctD6p2MyA", type: "quiz" },
+          { label: "পর্ব ৫", id: "jDUNolYzLo0", type: "video" },
         ].map((link, index) => (
           <Episode
             key={index}
             link={++index + ". " + link.label}
-            type="video"
+            type={link.type}
             time="5"
-            index={link.id}
+            slug={link.id}
           />
         ))}
       </ul>
@@ -55,17 +55,17 @@ const Item = ({ value }) => (
   </Accordion.Item>
 );
 
-const Episode = ({ link, type, time, amount, index }) => (
+const Episode = ({ link, type, time, amount, slug }) => (
   <Link
-    to={"" + index}
-    className="hover:bg-zinc-600 active:bg-zinc-600 transition duration-300 flex flex-col   text-xl font-medium rounded-lg py-2 px-4"
+    to={slug + "?type=" + type}
+    className="hover:bg-zinc-600 focus:bg-zinc-600 focus:border-0 focus:outline-none active:bg-zinc-600 transition duration-300 flex flex-col   text-xl font-medium rounded-lg py-2 px-4"
   >
     {link}
     <span className="text-zinc-400 text-base font-semibold gap-1 uppercase flex items-center">
       {type == "video" ? (
         <AiOutlineVideoCamera className="text-2xl" />
       ) : (
-        <RiNewspaperLine className="text-2xl" />
+        <RiNewspaperLine className="text-2xl " />
       )}
       <Dot /> {type == "video" ? "video" : "quiz"}
       <Dot /> {time ? `${time} min` : `${amount} questions`}
